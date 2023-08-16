@@ -3,9 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+
 	hbls "github.com/herumi/bls-eth-go-binary/bls"
 	"github.com/protolambda/ask"
-	"os"
 )
 
 func init() {
@@ -29,6 +30,8 @@ func (c *GenesisCmd) Cmd(route string) (cmd interface{}, err error) {
 		cmd = &BellatrixGenesisCmd{}
 	case "capella":
 		cmd = &CapellaGenesisCmd{}
+	case "deneb":
+		cmd = &DenebGenesisCmd{}
 	case "version":
 		cmd = &VersionCmd{}
 	default:
@@ -38,7 +41,7 @@ func (c *GenesisCmd) Cmd(route string) (cmd interface{}, err error) {
 }
 
 func (c *GenesisCmd) Routes() []string {
-	return []string{"phase0", "altair", "bellatrix", "capella", "version"}
+	return []string{"phase0", "altair", "bellatrix", "capella", "deneb", "version"}
 }
 
 func main() {
